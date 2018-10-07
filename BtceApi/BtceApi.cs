@@ -362,7 +362,9 @@ namespace BtcE
             request.Proxy.Credentials = CredentialCache.DefaultCredentials;
             if (request == null)
             {
-                throw new HttpException("Non HTTP WebRequest");
+                //todo: netstandard
+                throw new Exception("Non HTTP WebRequest");
+                //    throw new HttpException("Non HTTP WebRequest");
             }
 
             return new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
@@ -382,7 +384,11 @@ namespace BtcE
 
             var request = WebRequest.Create(new Uri(instanseExchangeHost + "tapi")) as HttpWebRequest;
             if (request == null)
-                throw new HttpException("Non HTTP WebRequest");
+            {
+                //todo: netstandard
+                throw new Exception("Non HTTP WebRequest");
+                //throw new HttpException("Non HTTP WebRequest");
+            }
 
             request.Method = "POST";
             request.Timeout = 15000;

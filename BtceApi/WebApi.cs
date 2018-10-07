@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using System.IO;
 using System.Net;
 using System.Web;
@@ -21,7 +22,13 @@ namespace BtcE
             request.Proxy = WebRequest.DefaultWebProxy;
             request.Proxy.Credentials = CredentialCache.DefaultCredentials;
             if (request == null)
-                throw new HttpException("Non HTTP WebRequest");
+            {
+
+                //todo: netstandard
+                throw new Exception("Non HTTP WebRequest");
+                //throw new HttpException("Non HTTP WebRequest");
+            }
+
             return new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
         }
     }
